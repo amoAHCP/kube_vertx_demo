@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: write-verticle
+    visualize: "true"
+  name: write-verticle
+spec:
+  ports:
+    - port: 5701
+      targetPort: 5701
+      name: write-verticle
+  selector:
+    name: write-verticle

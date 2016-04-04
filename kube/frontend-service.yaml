@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: frontend-verticle
+    visualize: "true"
+  name: frontend-verticle
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 8181
+      name: frontend-verticle
+  selector:
+    name: frontend-verticle

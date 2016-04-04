@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  labels:
+    name: frontend-verticle
+    visualize: "true"
+  name: frontend-verticle-controller
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: frontend-verticle
+        visualize: "true"
+    spec:
+      containers:
+      - image: gcr.io/kubernetestests/frontend-verticle:v01
+        name: frontend-verticle
+        ports:
+        - name: frontend-verticle
+          containerPort: 8181
+          hostPort: 8181
+        ports:
+        - name: hazlecast
+          containerPort: 5701
+          hostPort: 5701

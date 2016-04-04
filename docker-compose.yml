@@ -1,0 +1,11 @@
+mongodb:
+  image: mongo
+  ports:
+    - "27017:27017"
+read-verticle:
+  image: gcr.io/kubernetestests/read-verticle:v1
+  hostname: read-verticle
+  links:
+  - mongodb:mongodb
+  ports:
+   - "8181:8181"
