@@ -33,3 +33,9 @@ The frontend-verticle gets an external ip address (it may take some minutes unti
 - To get the logs of a pod type: "kubectl logs write-verticle-controller-3pj73".
 - To see all running replication controller, type: "kubectl get rc"
 - To scale the frontend-container type: "kubectl scale rc frontend-verticle-controller --replicas=2"
+
+## run the demo locally (without docker and kubernetes)
+
+1. start a mongodb accessible on localhost (or set env properties)
+2. build all 3 projects (mvn clean package)
+3. start each instance like this: java -jar frontend-verticle/target/frontend-verticle-fat.jar -cluster -conf frontend-verticle/local.json
