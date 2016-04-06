@@ -56,7 +56,10 @@ public class VxmsFrontend extends VxmsEndpoint {
     @GET
     public void userGetById(RestHandler handler) {
         final String id = handler.request().param("id");
-        if (id == null || id.isEmpty()) handler.response().end(HttpResponseStatus.BAD_REQUEST);
+        if (id == null || id.isEmpty()){
+            handler.response().end(HttpResponseStatus.BAD_REQUEST);
+            return;
+        }
         handler.
                 eventBusRequest().
                 send(USER_GET_BY_ID, id).
@@ -70,7 +73,11 @@ public class VxmsFrontend extends VxmsEndpoint {
     @POST
     public void userPOST(RestHandler handler) {
         final Buffer body = handler.request().body();
-        if (body == null || body.toJsonObject().isEmpty()) handler.response().end(HttpResponseStatus.BAD_REQUEST);
+        if (body == null || body.toJsonObject().isEmpty()) {
+            handler.response().end(HttpResponseStatus.BAD_REQUEST);
+            return;
+        }
+
         handler.
                 eventBusRequest().
                 send(USER_POST + "-post", body.toJsonObject()).
@@ -84,10 +91,12 @@ public class VxmsFrontend extends VxmsEndpoint {
     @PUT
     public void userPutById(RestHandler handler) {
         final String id = handler.request().param("id");
-        if (id == null || id.isEmpty()) handler.response().end(HttpResponseStatus.BAD_REQUEST);
-
         final Buffer body = handler.request().body();
-        if (body == null || body.toJsonObject().isEmpty()) handler.response().end(HttpResponseStatus.BAD_REQUEST);
+        if (id == null || id.isEmpty()|| body == null || body.toJsonObject().isEmpty()) {
+            handler.response().end(HttpResponseStatus.BAD_REQUEST);
+            return;
+        }
+
 
         final JsonObject message = DefaultResponses.mapToUser(body.toJsonObject(), id);
         handler.
@@ -103,8 +112,10 @@ public class VxmsFrontend extends VxmsEndpoint {
     @DELETE
     public void userDeleteById(RestHandler handler) {
         final String id = handler.request().param("id");
-        if (id == null || id.isEmpty()) handler.response().end(HttpResponseStatus.BAD_REQUEST);
-
+        if (id == null || id.isEmpty()){
+            handler.response().end(HttpResponseStatus.BAD_REQUEST);
+            return;
+        }
         handler.
                 eventBusRequest().
                 send(USER_DELETE + "-delete", id).
