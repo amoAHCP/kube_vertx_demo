@@ -22,8 +22,8 @@ case $i in
 esac
 done
 
-docker build -t gcr.io/$PROJECT_NAME/write-verticle:$IMAGE_VERSION write-verticle/
+docker build -t gcr.io/$PROJECT_NAME/write-verticle-dns:$IMAGE_VERSION write-verticle/
 
 if $DEPLOY; then
-    gcloud docker push gcr.io/$PROJECT_NAME/write-verticle:$IMAGE_VERSION
+    gcloud docker push gcr.io/$PROJECT_NAME/write-verticle-dns:$IMAGE_VERSION
 fi

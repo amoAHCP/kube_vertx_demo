@@ -4,7 +4,7 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <properties>
         <!-- at the moment the discovery needs to be activated explicitly -->
-        <property name="hazelcast.rest.enabled">true</property>
+        <property name="hazelcast.rest.enabled">false</property>
         <property name="hazelcast.discovery.enabled">true</property>
     </properties>
 
@@ -30,9 +30,8 @@
                 <discovery-strategy enabled="true"
                                     class="com.noctarius.hazelcast.kubernetes.HazelcastKubernetesDiscoveryStrategy">
                     <properties>
-                        <!-- configure discovery headless service  lookup -->
-                        <property name="service-name">frontend-verticle</property>
-                        <property name="namespace">default</property>
+                        <!-- configure discovery service API lookup -->
+                        <property name="service-dns">cluster.local</property>
                     </properties>
                 </discovery-strategy>
             </discovery-strategies>

@@ -2,25 +2,24 @@ apiVersion: v1
 kind: ReplicationController
 metadata:
   labels:
-    name: frontend-verticle
+    name: frontend-verticle-dns
     visualize: "true"
-  name: frontend-verticle-controller
+  name: frontend-verticle-dns-controller
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        name: frontend-verticle
+        name: frontend-verticle-dns
         visualize: "true"
     spec:
       containers:
-      - image: gcr.io/kubernetestests/frontend-verticle:v01
-        name: frontend-verticle
+      - image: gcr.io/kubernetestests/frontend-verticle-dns:v01
+        name: frontend-verticle-dns
         ports:
-        - name: frontend-verticle
+        - name: frontend-verticle-dns
           containerPort: 8181
           hostPort: 8181
         ports:
-        - name: hazlecast
+        - name: hazelcast
           containerPort: 5701
-          hostPort: 5701

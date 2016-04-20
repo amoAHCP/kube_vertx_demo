@@ -14,18 +14,20 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <vertx.version>3.2.0</vertx.version>
         <junit.version>4.11</junit.version>
+        <hazelcast.version>3.6.1</hazelcast.version>
+        <hazelcast-kubernetes-discovery.version>0.9.3-SNAPSHOT</hazelcast-kubernetes-discovery.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>com.hazelcast</groupId>
             <artifactId>hazelcast</artifactId>
-            <version>3.6.1</version>
+            <version>${hazelcast.version}</version>
         </dependency>
         <dependency>
             <groupId>com.noctarius.discovery</groupId>
             <artifactId>hazelcast-kubernetes-discovery</artifactId>
-            <version>0.9.2</version>
+            <version>${hazelcast-kubernetes-discovery.version}</version>
         </dependency>
         <dependency>
             <groupId>io.vertx</groupId>

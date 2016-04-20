@@ -2,20 +2,20 @@ apiVersion: v1
 kind: ReplicationController
 metadata:
   labels:
-    name: read-verticle
+    name: read-verticle-dns
     visualize: "true"
-  name: read-verticle-controller
+  name: read-verticle-dns-controller
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        name: read-verticle
+        name: read-verticle-dns
         visualize: "true"
     spec:
       containers:
-      - image: gcr.io/kubernetestests/read-verticle:v01
-        name: read-verticle
+      - image: gcr.io/kubernetestests/read-verticle-dns:v01
+        name: read-verticle-dns
         ports:
-        - name: read-verticle
+        - name: hazelcast
           containerPort: 5701
