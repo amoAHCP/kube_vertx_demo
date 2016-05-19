@@ -3,10 +3,11 @@ package ch.trivadis.verticles;
 import ch.trivadis.configuration.CustomEndpointConfig;
 import ch.trivadis.util.DefaultResponses;
 import ch.trivadis.util.InitMongoDB;
-import ch.trivadis.util.Runner;
 import io.netty.handler.codec.http.HttpResponseStatus;
 import io.vertx.core.DeploymentOptions;
 import io.vertx.core.Future;
+import io.vertx.core.Vertx;
+import io.vertx.core.VertxOptions;
 import io.vertx.core.buffer.Buffer;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
@@ -23,7 +24,7 @@ import javax.ws.rs.*;
  */
 @ServiceEndpoint(port = 8181)
 @EndpointConfig(CustomEndpointConfig.class)
-public class VxmsFrontend extends VxmsEndpoint {
+public class VxmsGateway extends VxmsEndpoint {
 
 
     public static final String USER_GET = "/api/users";
@@ -127,12 +128,20 @@ public class VxmsFrontend extends VxmsEndpoint {
 
     }
 
-
     // Convenience method so you can run it in your IDE
     public static void main(String[] args) {
         DeploymentOptions options = new DeploymentOptions().setInstances(1).
                 setConfig(new JsonObject().put("local", true).put("host", "0.0.0.0").put("port", 8181));
-        Runner.run(options, VxmsFrontend.class);
+        VertxOptions vOpts = new VertxOptions();
+        vOpts.setClustered(true);
+        Vertx.clusteredVertx(vOpts, cluster -> {
+            if (cluster.succeeded()) {
+                final Vertx result = cluster.result();
+                result.deployVerticle(VxmsGateway.class.getName(), options, handle -> {
+
+                });
+            }
+        });
 
     }
 }
