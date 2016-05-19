@@ -6,8 +6,8 @@ metadata:
     visualize: "true"
   name: read-verticle-dns
 spec:
-#  ports:
-#    - port: 5701
-#      name: hazelcast
+  ports:
+    - port: 5701
+      name: hazelcast
   selector:
     name: read-verticle-dns
