@@ -15,7 +15,7 @@ import java.util.Optional;
 /**
  * Created by Andy Moncsek on 17.02.16.
  */
-public class VerticleFrontend extends AbstractVerticle {
+public class VerticleGateway extends AbstractVerticle {
 
     @Override
     public void start(Future<Void> startFuture) throws Exception {
@@ -40,15 +40,14 @@ public class VerticleFrontend extends AbstractVerticle {
 
         router.delete("/api/users/:id").handler(this::deleteUser);
 
-        final Integer port = Integer.valueOf(Optional.ofNullable(System.getenv("httpPort")).orElse("8181"));
-        final String host = Optional.ofNullable(System.getProperty("http.address")).orElse("0.0.0.0");
-
         router.route().handler(StaticHandler.create());
 
-        vertx.createHttpServer().requestHandler(router::accept).listen(port,host);
+        vertx.createHttpServer().requestHandler(router::accept).listen(getHttpPort(),getHost());
 
         startFuture.complete();
     }
+
+
 
 
     private void updateUser(RoutingContext ctx) {
@@ -104,6 +103,14 @@ public class VerticleFrontend extends AbstractVerticle {
         return message;
     }
 
+    private String getHost() {
+        return Optional.ofNullable(System.getProperty("http.address")).orElse("0.0.0.0");
+    }
+
+    private Integer getHttpPort() {
+        return Integer.valueOf(Optional.ofNullable(System.getenv("httpPort")).orElse("8181"));
+    }
+
     // Convenience method so you can run it in your IDE
     public static void main(String[] args) {
         VertxOptions vOpts = new VertxOptions();
@@ -112,7 +119,7 @@ public class VerticleFrontend extends AbstractVerticle {
         Vertx.clusteredVertx(vOpts, cluster -> {
             if (cluster.succeeded()) {
                 final Vertx result = cluster.result();
-                result.deployVerticle(VerticleFrontend.class.getName(), options, handle -> {
+                result.deployVerticle(VerticleGateway.class.getName(), options, handle -> {
 
                 });
             }

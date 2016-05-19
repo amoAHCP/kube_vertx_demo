@@ -14,7 +14,7 @@ spec:
         visualize: "true"
     spec:
       containers:
-      - image: gcr.io/kubernetestests/write-verticle-dns:v1
+      - image: gcr.io/kubernetestests/write-verticle-dns:v02
         name: write-verticle-dns
         ports:
         - name: hazelcast

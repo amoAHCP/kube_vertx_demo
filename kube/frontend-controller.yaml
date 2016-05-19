@@ -14,7 +14,7 @@ spec:
         visualize: "true"
     spec:
       containers:
-      - image: gcr.io/kubernetestests/frontend-verticle-dns:v01
+      - image: gcr.io/kubernetestests/frontend-verticle-dns:v02
         name: frontend-verticle-dns
         ports:
         - name: frontend-verticle-dns

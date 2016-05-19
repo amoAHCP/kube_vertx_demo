@@ -24,7 +24,7 @@ import javax.ws.rs.*;
  */
 @ServiceEndpoint(port = 8181)
 @EndpointConfig(CustomEndpointConfig.class)
-public class VxmsFrontend extends VxmsEndpoint {
+public class VxmsGateway extends VxmsEndpoint {
 
 
     public static final String USER_GET = "/api/users";
@@ -138,7 +138,7 @@ public class VxmsFrontend extends VxmsEndpoint {
         Vertx.clusteredVertx(vOpts, cluster -> {
             if (cluster.succeeded()) {
                 final Vertx result = cluster.result();
-                result.deployVerticle(VxmsFrontend.class.getName(), options, handle -> {
+                result.deployVerticle(VxmsGateway.class.getName(), options, handle -> {
 
                 });
             }
