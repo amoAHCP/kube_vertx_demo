@@ -1,5 +1,5 @@
-# kube_vertx_demo -DNS discovery version-
-The version without DNS discovery, but with "REST" discovery you can find here: https://github.com/amoAHCP/kube_vertx_demo
+# kube_vertx_demo alternate REST discovery version-
+This demo is based on REST discovery used in https://github.com/vert-x3/vertx-service-discovery , which is quite similar to Hazelcast REST discovery. I'll commit a patch soon to allow discovery only by namespace, so you can partition your cluster.
 ## A Kubernetes, Vert.x/Hazelcast/vxms demo
 This is an event driven microservice demo using three Vertx instances, each running in a separate kubernetes pod (rc & service). The instances are clustered using the hazlecast kubernetes plugin. To run the demo, a running kubernetes (with DNS enabled) is assumed (http://kubernetes.io/docs/hellonode/).
 The demo application is a small user-administration in AngularJs. The frontend-verticle contains the UI and a vxms REST Endpoint (the aggregator) (https://github.com/amoAHCP/vxms). The read requests will be passed to the read-verticle using the Vert.x event bus (clustered Hazelcast), and the write request to the write-verticle. All instances are using the same mongodb deployment running in the same kubernetes cluster.

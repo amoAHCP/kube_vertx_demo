@@ -14,7 +14,7 @@ spec:
         visualize: "true"
     spec:
       containers:
-      - image: gcr.io/kubernetestests/read-verticle-dns:v02
+      - image: gcr.io/kubernetestests/read-verticle-dns:vertxPlugin08
         name: read-verticle-dns
         ports:
         - name: hazelcast
