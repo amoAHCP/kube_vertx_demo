@@ -1,0 +1,7 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: vertx
+  labels:
+    name: vertx
+    visualize: "true"

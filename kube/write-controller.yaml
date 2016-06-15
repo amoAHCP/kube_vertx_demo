@@ -11,10 +11,12 @@ spec:
     metadata:
       labels:
         name: write-verticle-dns
+        env: prod
+        app: vertx-cluster-02
         visualize: "true"
     spec:
       containers:
-      - image: gcr.io/kubernetestests/write-verticle-dns:vertxPlugin08
+      - image: gcr.io/kubernetestests/write-verticle-dns:vertxPluginOfficial02
         name: write-verticle-dns
         ports:
         - name: hazelcast

@@ -10,4 +10,4 @@ spec:
     - port: 5701
       name: hazelcast
   selector:
-    name: write-verticle-dns
+    app: vertx-cluster-02

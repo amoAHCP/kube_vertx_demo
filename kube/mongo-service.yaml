@@ -3,7 +3,7 @@ kind: Service
 metadata:
   labels:
     name: mongo
-    visualize: "true"
+    visualize: "false"
   name: mongo
 spec:
   ports:

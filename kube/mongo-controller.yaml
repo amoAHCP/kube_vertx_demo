@@ -3,7 +3,7 @@ kind: ReplicationController
 metadata:
   labels:
     name: mongo
-    visualize: "true"
+    visualize: "false"
   name: mongo-controller
 spec:
   replicas: 1
@@ -20,4 +20,3 @@ spec:
         - name: mongo
           containerPort: 27017
           hostPort: 27017
-        

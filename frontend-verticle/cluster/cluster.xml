@@ -41,7 +41,7 @@
                                     class="io.vertx.ext.discovery.hazelcast.HazelcastKubernetesDiscoveryStrategy">
                     <properties>
                         <property name="namespace">default</property>
-                        <property name="service-name">frontend-verticle-dns</property>
+                        <!--<property name="service-name">frontend-verticle-dns</property> -->
                     </properties>
                 </discovery-strategy>
             </discovery-strategies>

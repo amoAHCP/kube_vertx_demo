@@ -11,10 +11,12 @@ spec:
     metadata:
       labels:
         name: read-verticle-dns
+        env: prod
+        app: vertx-cluster-01
         visualize: "true"
     spec:
       containers:
-      - image: gcr.io/kubernetestests/read-verticle-dns:vertxPlugin08
+      - image: gcr.io/kubernetestests/read-verticle-dns:vertxPluginOfficial02
         name: read-verticle-dns
         ports:
         - name: hazelcast

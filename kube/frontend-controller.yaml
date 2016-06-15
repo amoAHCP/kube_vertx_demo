@@ -11,10 +11,12 @@ spec:
     metadata:
       labels:
         name: frontend-verticle-dns
+        env: prod
+        app: vertx-cluster
         visualize: "true"
     spec:
       containers:
-      - image: gcr.io/kubernetestests/frontend-verticle-dns:vertxPlugin08
+      - image: gcr.io/kubernetestests/frontend-verticle-dns:vertxPluginOfficial02
         name: frontend-verticle-dns
         ports:
         - name: frontend-verticle-dns
