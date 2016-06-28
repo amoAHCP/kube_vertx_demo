@@ -4,6 +4,7 @@ metadata:
   labels:
     name: write-verticle-dns
     visualize: "true"
+    vertx-cluster: "true"
   name: write-verticle-dns
 spec:
   ports:

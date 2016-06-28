@@ -12,7 +12,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <vertx.version>3.3.0-SNAPSHOT</vertx.version>
+        <vertx.version>3.3.0</vertx.version>
         <junit.version>4.11</junit.version>
         <hazelcast.version>3.6.2</hazelcast.version>
         <slf4j-api.version>1.7.16</slf4j-api.version>
@@ -27,8 +27,8 @@
         </dependency>
         <dependency>
             <groupId>io.vertx</groupId>
-            <artifactId>vertx-discovery-bridge-kubernetes</artifactId>
-            <version>3.3.1-SNAPSHOT</version>
+            <artifactId>vertx-service-discovery-bridge-kubernetes</artifactId>
+            <version>${vertx.version}</version>
         </dependency>
         <dependency>
             <groupId>com.hazelcast</groupId>
