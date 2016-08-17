@@ -12,7 +12,7 @@ import io.vertx.core.buffer.Buffer;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 import org.jacpfx.common.ServiceEndpoint;
-import org.jacpfx.vertx.rest.annotation.EndpointConfig;
+import org.jacpfx.common.configuration.EndpointConfig;
 import org.jacpfx.vertx.rest.response.RestHandler;
 import org.jacpfx.vertx.services.VxmsEndpoint;
 
