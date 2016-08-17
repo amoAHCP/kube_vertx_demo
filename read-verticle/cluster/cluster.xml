@@ -31,8 +31,8 @@
                                     class="com.noctarius.hazelcast.kubernetes.HazelcastKubernetesDiscoveryStrategy">
                     <properties>
                         <!-- configure discovery headless service  lookup -->
-                        <property name="service-name">frontend-verticle</property>
-                        <property name="namespace">default</property>
+                        <property name="service-label-name">cluster01</property>
+                        <property name="service-label-value">true</property>
                     </properties>
                 </discovery-strategy>
             </discovery-strategies>

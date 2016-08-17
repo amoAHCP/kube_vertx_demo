@@ -14,7 +14,7 @@ spec:
         visualize: "true"
     spec:
       containers:
-      - image: gcr.io/kubernetestests/write-verticle:v1
+      - image: gcr.io/kubernetestests/write-verticle:vertxHazelPatchLabel01
         name: write-verticle
         ports:
         - name: write-verticle

@@ -14,7 +14,7 @@ spec:
         visualize: "true"
     spec:
       containers:
-      - image: gcr.io/kubernetestests/read-verticle:v01
+      - image: gcr.io/kubernetestests/read-verticle:vertxHazelPatchLabel01
         name: read-verticle
         ports:
         - name: read-verticle

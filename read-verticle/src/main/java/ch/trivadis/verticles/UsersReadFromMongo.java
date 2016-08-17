@@ -7,8 +7,6 @@ import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.mongo.MongoClient;
 
-import java.util.stream.Collectors;
-
 /**
  * Created by Andy Moncsek on 17.02.16.
  */
@@ -22,7 +20,7 @@ public class UsersReadFromMongo extends AbstractVerticle {
 
         vertx.eventBus().consumer("/api/users", getAllUsers());
 
-        vertx.eventBus().consumer("/api/users/:id", getAllUserById());
+        vertx.eventBus().consumer("/api/users/:id", getUserById());
 
         startFuture.complete();
 
@@ -37,11 +35,11 @@ public class UsersReadFromMongo extends AbstractVerticle {
                 handler.fail(500, "lookup failed");
                 return;
             }
-            handler.reply(new JsonArray(lookup.result().stream().collect(Collectors.toList())).encode());
+            handler.reply(new JsonArray(lookup.result()).encode());
         });
     }
 
-    private Handler<Message<Object>> getAllUserById() {
+    private Handler<Message<Object>> getUserById() {
         return handler -> {
             final Object body = handler.body();
             final String id = body.toString();
@@ -65,14 +63,10 @@ public class UsersReadFromMongo extends AbstractVerticle {
 
     // Convenience method so you can run it in your IDE
     public static void main(String[] args) {
-
-        VertxOptions vOpts = new VertxOptions();
-        DeploymentOptions options = new DeploymentOptions().setInstances(1).setConfig(new JsonObject().put("local", true));
-        vOpts.setClustered(true);
-        Vertx.clusteredVertx(vOpts, cluster -> {
+        Vertx.clusteredVertx(new VertxOptions().setClustered(true), cluster -> {
             if (cluster.succeeded()) {
                 final Vertx result = cluster.result();
-                result.deployVerticle(UsersReadFromMongo.class.getName(), options, handle -> {
+                result.deployVerticle(UsersReadFromMongo.class.getName(), new DeploymentOptions().setConfig(new JsonObject().put("local", true)), handle -> {
 
                 });
             }

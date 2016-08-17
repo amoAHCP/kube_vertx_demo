@@ -4,6 +4,7 @@ metadata:
   labels:
     name: write-verticle
     visualize: "true"
+    cluster01: "true"
   name: write-verticle
 spec:
   ports:

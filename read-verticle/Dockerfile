@@ -1,4 +1,8 @@
-FROM maven:3.3-jdk-8-onbuild
+FROM maven:3.3.3-jdk-8
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+ONBUILD ADD . /usr/src/app
+
 ADD cluster/cluster.xml /cluster/
 COPY . /usr/src/app
 

@@ -4,6 +4,7 @@ metadata:
   labels:
     name: frontend-verticle
     visualize: "true"
+    cluster01: "true"
   name: frontend-verticle
 spec:
   type: LoadBalancer

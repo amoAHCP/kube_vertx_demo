@@ -14,7 +14,7 @@ spec:
         visualize: "true"
     spec:
       containers:
-      - image: gcr.io/kubernetestests/frontend-verticle:v01
+      - image: gcr.io/kubernetestests/frontend-verticle:vertxHazelPatchLabel01
         name: frontend-verticle
         ports:
         - name: frontend-verticle

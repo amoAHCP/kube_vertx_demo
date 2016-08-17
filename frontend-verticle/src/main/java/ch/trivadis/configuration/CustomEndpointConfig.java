@@ -2,7 +2,7 @@ package ch.trivadis.configuration;
 
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.handler.StaticHandler;
-import org.jacpfx.vertx.rest.configuration.EndpointConfiguration;
+import org.jacpfx.common.configuration.EndpointConfiguration;
 
 /**
  * Created by Andy Moncsek on 18.02.16.
