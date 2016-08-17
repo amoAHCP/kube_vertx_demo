@@ -89,7 +89,7 @@
         </dependency>
         <dependency>
             <groupId>org.jacpfx</groupId>
-            <artifactId>vxms-common</artifactId>
+            <artifactId>vxms-rest</artifactId>
             <version>${vxms-verticle.version}</version>
         </dependency>
         <dependency>
