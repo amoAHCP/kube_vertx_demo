@@ -47,9 +47,9 @@ public class VxmsGateway extends VxmsEndpoint {
         handler.
                 eventBusRequest().
                 send(USER_GET, "").
-                onErrorResult(onError -> new JsonArray().add(DefaultResponses.defaultErrorResponse()).encode()).
-                mapToStringResponse(eventResponse -> eventResponse.result().body().toString()).
+                mapToStringResponse((eventResponse, future) -> future.complete(eventResponse.result().body().toString())).
                 retry(2).
+                onFailureRespond((onError, future) -> future.complete(new JsonArray().add(DefaultResponses.defaultErrorResponse()).encode())).
                 execute();
     }
 
@@ -57,16 +57,16 @@ public class VxmsGateway extends VxmsEndpoint {
     @GET
     public void userGetById(RestHandler handler) {
         final String id = handler.request().param("id");
-        if (id == null || id.isEmpty()){
+        if (id == null || id.isEmpty()) {
             handler.response().end(HttpResponseStatus.BAD_REQUEST);
             return;
         }
         handler.
                 eventBusRequest().
                 send(USER_GET_BY_ID, id).
-                onErrorResult(onError -> DefaultResponses.defaultErrorResponse()).
-                mapToStringResponse(eventResponse -> eventResponse.result().body().toString()).
+                mapToStringResponse((eventResponse, future) -> future.complete(eventResponse.result().body().toString())).
                 retry(2).
+                onFailureRespond((onError, future) -> future.complete(DefaultResponses.defaultErrorResponse().encodePrettily())).
                 execute();
     }
 
@@ -82,9 +82,9 @@ public class VxmsGateway extends VxmsEndpoint {
         handler.
                 eventBusRequest().
                 send(USER_POST + "-post", body.toJsonObject()).
-                onErrorResult(onError -> DefaultResponses.defaultErrorResponse()).
-                mapToStringResponse(eventResponse -> eventResponse.result().body().toString()).
+                mapToStringResponse((eventResponse, future) -> future.complete(eventResponse.result().body().toString())).
                 retry(2).
+                onFailureRespond((onError, future) -> future.complete(DefaultResponses.defaultErrorResponse().encodePrettily())).
                 execute();
     }
 
@@ -93,7 +93,7 @@ public class VxmsGateway extends VxmsEndpoint {
     public void userPutById(RestHandler handler) {
         final String id = handler.request().param("id");
         final Buffer body = handler.request().body();
-        if (id == null || id.isEmpty()|| body == null || body.toJsonObject().isEmpty()) {
+        if (id == null || id.isEmpty() || body == null || body.toJsonObject().isEmpty()) {
             handler.response().end(HttpResponseStatus.BAD_REQUEST);
             return;
         }
@@ -103,9 +103,9 @@ public class VxmsGateway extends VxmsEndpoint {
         handler.
                 eventBusRequest().
                 send(USER_PUT + "-put", message).
-                onErrorResult(onError -> DefaultResponses.defaultErrorResponse()).
-                mapToStringResponse(eventResponse -> eventResponse.result().body().toString()).
+                mapToStringResponse((eventResponse, future) -> future.complete(eventResponse.result().body().toString())).
                 retry(2).
+                onFailureRespond((onError, future) -> future.complete(DefaultResponses.defaultErrorResponse().encodePrettily())).
                 execute();
     }
 
@@ -113,16 +113,16 @@ public class VxmsGateway extends VxmsEndpoint {
     @DELETE
     public void userDeleteById(RestHandler handler) {
         final String id = handler.request().param("id");
-        if (id == null || id.isEmpty()){
+        if (id == null || id.isEmpty()) {
             handler.response().end(HttpResponseStatus.BAD_REQUEST);
             return;
         }
         handler.
                 eventBusRequest().
                 send(USER_DELETE + "-delete", id).
-                onErrorResult(onError -> DefaultResponses.defaultErrorResponse()).
-                mapToStringResponse(eventResponse -> eventResponse.result().body().toString()).
+                mapToStringResponse((eventResponse, future) -> future.complete(eventResponse.result().body().toString())).
                 retry(2).
+                onFailureRespond((onError, future) -> future.complete(DefaultResponses.defaultErrorResponse().encodePrettily())).
                 execute(HttpResponseStatus.NO_CONTENT);
 
 
