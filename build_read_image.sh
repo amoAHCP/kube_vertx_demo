@@ -1,5 +1,5 @@
 #!/bin/bash
-PROJECT_NAME=kubernetestests
+PROJECT_NAME=kubernetestests-147607
 IMAGE_VERSION=v01
 DEPLOY=false
 
@@ -22,8 +22,8 @@ case $i in
 esac
 done
 
-docker build -t gcr.io/$PROJECT_NAME/read-verticle-dns:$IMAGE_VERSION read-verticle/
+docker build -t gcr.io/$PROJECT_NAME/read-verticle:$IMAGE_VERSION read-verticle/
 
 if $DEPLOY; then
-    gcloud docker push gcr.io/$PROJECT_NAME/read-verticle-dns:$IMAGE_VERSION
+    gcloud docker push gcr.io/$PROJECT_NAME/read-verticle:$IMAGE_VERSION
 fi
