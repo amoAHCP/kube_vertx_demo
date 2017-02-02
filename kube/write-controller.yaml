@@ -2,22 +2,22 @@ apiVersion: v1
 kind: ReplicationController
 metadata:
   labels:
-    name: write-verticle-dns
+    name: write-verticle
     visualize: "true"
-  name: write-verticle-dns-controller
+  name: write-verticle-controller
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        name: write-verticle-dns
+        name: write-verticle
         env: prod
         app: vertx-cluster-02
         visualize: "true"
     spec:
       containers:
-      - image: gcr.io/kubernetestests-147607/write-verticle:02
-        name: write-verticle-dns
+      - image: gcr.io/kubernetestests-147607/write-verticle:etcd13
+        name: write-verticle
         ports:
         - name: hazelcast
           containerPort: 5701

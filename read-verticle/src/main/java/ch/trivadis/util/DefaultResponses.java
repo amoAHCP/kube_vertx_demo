@@ -16,15 +16,6 @@ public class DefaultResponses {
         return message;
     }
 
-    public static JsonObject defaultErrorResponse(String userMessage) {
-        JsonObject message = new JsonObject();
-        message.put("username", userMessage).
-                put("firstName", userMessage).
-                put("lastName", userMessage).
-                put("address", userMessage);
-        return message;
-    }
-
 
     public static  JsonObject mapToUser(JsonObject input, String id) {
         return  new JsonObject().

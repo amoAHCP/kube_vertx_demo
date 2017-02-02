@@ -3,7 +3,6 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 ONBUILD ADD . /usr/src/app
 
-ADD cluster/cluster.xml /cluster/
 COPY . /usr/src/app
 
-CMD ["java", "-jar", "/usr/src/app/target/write-verticle-1.0-SNAPSHOT-fat.jar", "-cluster","-cp","/cluster/"]
+CMD ["java", "-jar", "/usr/src/app/target/write-verticle-1.0-SNAPSHOT-fat.jar"]

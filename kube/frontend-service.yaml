@@ -2,15 +2,15 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    name: frontend-verticle-dns
+    name: frontend-verticle
     visualize: "true"
     vertx-cluster: "true"
-  name: frontend-verticle-dns
+  name: frontend-verticle
 spec:
   type: LoadBalancer
   ports:
     - port: 80
       targetPort: 8181
-      name: frontend-verticle-dns
+      name: frontend-verticle
   selector:
       app: vertx-cluster
