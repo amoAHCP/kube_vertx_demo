@@ -12,7 +12,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <vertx.version>3.3.0</vertx.version>
+        <vertx.version>3.3.3</vertx.version>
         <junit.version>4.11</junit.version>
         <hazelcast.version>3.6.1</hazelcast.version>
         <slf4j-api.version>1.7.16</slf4j-api.version>
@@ -33,7 +33,7 @@
         <dependency>
             <groupId>io.vertx</groupId>
             <artifactId>vertx-mongo-client</artifactId>
-            <version>3.2.1</version>
+            <version>${vertx.version}</version>
         </dependency>
         <!--Vertx provided dependencies-->
         <dependency>
