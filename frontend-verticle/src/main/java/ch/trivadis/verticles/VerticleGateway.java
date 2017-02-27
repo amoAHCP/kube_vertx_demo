@@ -1,9 +1,11 @@
 package ch.trivadis.verticles;
 
+import ch.trivadis.util.DefaultResponses;
 import ch.trivadis.util.InitMongoDB;
 import io.vertx.core.*;
 import io.vertx.core.eventbus.Message;
 import io.vertx.core.http.HttpHeaders;
+import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
@@ -68,7 +70,7 @@ public class VerticleGateway extends AbstractVerticle {
     }
 
     private void getUsers(RoutingContext ctx) {
-        vertx.eventBus().send("/api/users", "", (Handler<AsyncResult<Message<String>>>) responseHandler -> defaultResponse(ctx, responseHandler));
+        vertx.eventBus().send("/api/users", "", (Handler<AsyncResult<Message<String>>>) responseHandler -> defaultCollectionResponse(ctx, responseHandler));
     }
 
     private void deleteUser(RoutingContext ctx) {
@@ -85,7 +87,17 @@ public class VerticleGateway extends AbstractVerticle {
 
     private void defaultResponse(RoutingContext ctx, AsyncResult<Message<String>> responseHandler) {
         if (responseHandler.failed()) {
-            ctx.fail(500);
+            ctx.response().end(DefaultResponses.defaultErrorResponse().encodePrettily());
+        } else {
+            final Message<String> result = responseHandler.result();
+            ctx.response().putHeader(HttpHeaders.CONTENT_TYPE, "application/json");
+            ctx.response().end(result.body());
+        }
+    }
+
+    private void defaultCollectionResponse(RoutingContext ctx, AsyncResult<Message<String>> responseHandler) {
+        if (responseHandler.failed()) {
+            ctx.response().end(new JsonArray().add(DefaultResponses.defaultErrorResponse()).encode());
         } else {
             final Message<String> result = responseHandler.result();
             ctx.response().putHeader(HttpHeaders.CONTENT_TYPE, "application/json");
