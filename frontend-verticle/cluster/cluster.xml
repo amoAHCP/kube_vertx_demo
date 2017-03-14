@@ -40,7 +40,6 @@
                 <discovery-strategy enabled="true"
                                     class="io.vertx.servicediscovery.hazelcast.HazelcastKubernetesDiscoveryStrategy">
                     <properties>
-                        <property name="namespace">default</property>
                         <property name="service-label-name">vertx-cluster</property>
                         <property name="service-label-value">true</property>
                         <!--<property name="service-name">frontend-verticle-dns</property> -->

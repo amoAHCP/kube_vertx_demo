@@ -10,7 +10,7 @@ import io.vertx.ext.mongo.MongoClient;
 import java.util.stream.Collectors;
 
 /**
- * Created by Andy Moncsek on 17.02.16.
+ * Created by Andy Moncsek .
  */
 public class UsersReadFromMongo extends AbstractVerticle {
     private MongoClient mongo;

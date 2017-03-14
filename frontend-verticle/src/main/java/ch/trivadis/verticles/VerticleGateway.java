@@ -15,7 +15,7 @@ import io.vertx.ext.web.handler.StaticHandler;
 import java.util.Optional;
 
 /**
- * Created by Andy Moncsek on 17.02.16.
+ * Created by Andy Moncsek .
  */
 public class VerticleGateway extends AbstractVerticle {
 
