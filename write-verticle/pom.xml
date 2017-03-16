@@ -17,31 +17,45 @@
         <hazelcast.version>3.8</hazelcast.version>
         <slf4j-api.version>1.7.16</slf4j-api.version>
         <hazelcast-kubernetes.version>1.0.0</hazelcast-kubernetes.version>
+        <vxms-verticle.version>1.0-SNAPSHOT</vxms-verticle.version>
     </properties>
 
     <dependencies>
-
         <dependency>
-            <groupId>io.vertx</groupId>
-            <artifactId>vertx-service-discovery-bridge-kubernetes</artifactId>
-            <version>${vertx.version}</version>
+            <groupId>org.jacpfx</groupId>
+            <artifactId>vxms-event</artifactId>
+            <version>${vxms-verticle.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jacpfx</groupId>
+            <artifactId>vxms-verticle</artifactId>
+            <version>${vxms-verticle.version}</version>
         </dependency>
         <dependency>
             <groupId>io.vertx</groupId>
             <artifactId>vertx-mongo-client</artifactId>
             <version>${vertx.version}</version>
         </dependency>
-        <!--  <dependency>
-              <groupId>com.hazelcast</groupId>
-              <artifactId>hazelcast-kubernetes</artifactId>
-              <version>${hazelcast-kubernetes.version}</version>
-          </dependency>
+
         <dependency>
             <groupId>com.hazelcast</groupId>
-            <artifactId>hazelcast</artifactId>
-            <version>${hazelcast.version}</version>
+            <artifactId>hazelcast-kubernetes</artifactId>
+            <version>${hazelcast-kubernetes.version}</version>
         </dependency>
-          -->
+
+        <!--   <dependency>
+               <groupId>io.vertx</groupId>
+               <artifactId>vertx-service-discovery-bridge-kubernetes</artifactId>
+               <version>${vertx.version}</version>
+           </dependency>
+
+
+           <dependency>
+               <groupId>com.hazelcast</groupId>
+               <artifactId>hazelcast</artifactId>
+               <version>${hazelcast.version}</version>
+           </dependency>
+             -->
         <!--Vertx provided dependencies-->
         <dependency>
             <groupId>io.vertx</groupId>
@@ -126,7 +140,7 @@
                                         implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <manifestEntries>
                                         <Main-Class>io.vertx.core.Launcher</Main-Class>
-                                        <Main-Verticle>ch.trivadis.verticles.UsersWriteToMongo</Main-Verticle>
+                                        <Main-Verticle>ch.trivadis.verticles.UsersWriteVxms</Main-Verticle>
                                     </manifestEntries>
                                 </transformer>
                                 <transformer

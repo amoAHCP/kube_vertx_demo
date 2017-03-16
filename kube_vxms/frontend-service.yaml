@@ -2,15 +2,15 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    name: gateway-verticle
+    name: gateway-vxms
     visualize: "true"
     vertx-cluster: "true"
-  name: gateway-verticle
+  name: gateway-vxms
 spec:
   type: LoadBalancer
   ports:
     - port: 80
       targetPort: 8181
-      name: gateway-verticle
+      name: gateway-vxms
   selector:
-      app: vertx-cluster
+      app:  vxms-cluster

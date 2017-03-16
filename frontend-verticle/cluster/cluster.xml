@@ -38,10 +38,11 @@
             <tcp-ip enabled="false"/>
             <discovery-strategies>
                 <discovery-strategy enabled="true"
-                                    class="io.vertx.servicediscovery.hazelcast.HazelcastKubernetesDiscoveryStrategy">
+                                    class="com.hazelcast.kubernetes.HazelcastKubernetesDiscoveryStrategy">
                     <properties>
                         <property name="service-label-name">vertx-cluster</property>
                         <property name="service-label-value">true</property>
+                        <property name="namespace">default</property>
                         <!--<property name="service-name">frontend-verticle-dns</property> -->
                     </properties>
                 </discovery-strategy>

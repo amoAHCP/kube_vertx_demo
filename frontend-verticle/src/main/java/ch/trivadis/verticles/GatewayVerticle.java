@@ -17,7 +17,7 @@ import java.util.Optional;
 /**
  * Created by Andy Moncsek .
  */
-public class VerticleGateway extends AbstractVerticle {
+public class GatewayVerticle extends AbstractVerticle {
 
     @Override
     public void start(Future<Void> startFuture) throws Exception {
@@ -56,25 +56,25 @@ public class VerticleGateway extends AbstractVerticle {
         // update the user properties
         JsonObject update = ctx.getBodyAsJson();
         JsonObject message = updateEntity(ctx, update);
-        vertx.eventBus().send("/api/users/:id-put", message, (Handler<AsyncResult<Message<String>>>) responseHandler -> defaultResponse(ctx, responseHandler));
+        vertx.eventBus().send("/api.users.id.PUT", message, (Handler<AsyncResult<Message<String>>>) responseHandler -> defaultResponse(ctx, responseHandler));
     }
 
 
     private void postUser(RoutingContext ctx) {
         JsonObject newUser = ctx.getBodyAsJson();
-        vertx.eventBus().send("/api/users-post", newUser, (Handler<AsyncResult<Message<String>>>) responseHandler -> defaultResponse(ctx, responseHandler));
+        vertx.eventBus().send("/api.users.POST", newUser, (Handler<AsyncResult<Message<String>>>) responseHandler -> defaultResponse(ctx, responseHandler));
     }
 
     private void getUserById(RoutingContext ctx) {
-        vertx.eventBus().send("/api/users/:id", ctx.request().getParam("id"), (Handler<AsyncResult<Message<String>>>) responseHandler -> defaultResponse(ctx, responseHandler));
+        vertx.eventBus().send("/api.users.id.GET", ctx.request().getParam("id"), (Handler<AsyncResult<Message<String>>>) responseHandler -> defaultResponse(ctx, responseHandler));
     }
 
     private void getUsers(RoutingContext ctx) {
-        vertx.eventBus().send("/api/users", "", (Handler<AsyncResult<Message<String>>>) responseHandler -> defaultCollectionResponse(ctx, responseHandler));
+        vertx.eventBus().send("/api.users.GET", "", (Handler<AsyncResult<Message<String>>>) responseHandler -> defaultCollectionResponse(ctx, responseHandler));
     }
 
     private void deleteUser(RoutingContext ctx) {
-        vertx.eventBus().send("/api/users/:id-delete", ctx.request().getParam("id"), (Handler<AsyncResult<Message<String>>>) responseHandler -> {
+        vertx.eventBus().send("/api.users.id.DELETE", ctx.request().getParam("id"), (Handler<AsyncResult<Message<String>>>) responseHandler -> {
             if (responseHandler.failed()) {
                 ctx.fail(500);
             } else {
@@ -131,7 +131,7 @@ public class VerticleGateway extends AbstractVerticle {
         Vertx.clusteredVertx(vOpts, cluster -> {
             if (cluster.succeeded()) {
                 final Vertx result = cluster.result();
-                result.deployVerticle(VerticleGateway.class.getName(), options, handle -> {
+                result.deployVerticle(GatewayVerticle.class.getName(), options, handle -> {
 
                 });
             }

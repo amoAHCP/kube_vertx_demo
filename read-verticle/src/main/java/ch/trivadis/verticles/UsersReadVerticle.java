@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 /**
  * Created by Andy Moncsek .
  */
-public class UsersReadFromMongo extends AbstractVerticle {
+public class UsersReadVerticle extends AbstractVerticle {
     private MongoClient mongo;
 
 
@@ -20,9 +20,9 @@ public class UsersReadFromMongo extends AbstractVerticle {
     public void start(Future<Void> startFuture) throws Exception {
         mongo = InitMongoDB.initMongoData(vertx,config());
 
-        vertx.eventBus().consumer("/api/users", getAllUsers());
+        vertx.eventBus().consumer("/api.users.GET", getAllUsers());
 
-        vertx.eventBus().consumer("/api/users/:id", getAllUserById());
+        vertx.eventBus().consumer("/api.users.id.GET", getAllUserById());
 
         startFuture.complete();
 
@@ -72,7 +72,7 @@ public class UsersReadFromMongo extends AbstractVerticle {
         Vertx.clusteredVertx(vOpts, cluster -> {
             if (cluster.succeeded()) {
                 final Vertx result = cluster.result();
-                result.deployVerticle(UsersReadFromMongo.class.getName(), options, handle -> {
+                result.deployVerticle(UsersReadVerticle.class.getName(), options, handle -> {
 
                 });
             }

@@ -2,10 +2,10 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    name: read-verticle-dns
+    name: read-verticle
     visualize: "true"
     vertx-cluster: "true"
-  name: read-verticle-dns
+  name: read-verticle
 spec:
   ports:
     - port: 5701

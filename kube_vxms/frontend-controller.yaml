@@ -2,24 +2,24 @@ apiVersion: v1
 kind: ReplicationController
 metadata:
   labels:
-    name: gateway-verticle
+    name: gateway-vxms
     visualize: "true"
-  name: gateway-verticle-controller
+  name: gateway-vxms-controller
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        name: frontend-verticle-dns
+        name: frontend-vxms-dns
         env: prod
-        app: vertx-cluster
+        app: vxms-cluster
         visualize: "true"
     spec:
       containers:
-      - image: gcr.io/kubernetestests-147607/frontend-verticle:vertx-demo
-        name: gateway-verticle
+      - image: gcr.io/kubernetestests-147607/frontend-verticle:vxms-demo
+        name: gateway-vxms
         ports:
-        - name: gateway-verticle
+        - name: gateway-vxms
           containerPort: 8181
           hostPort: 8181
         ports:

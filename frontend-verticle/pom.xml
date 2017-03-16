@@ -22,25 +22,32 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.jacpfx</groupId>
+            <artifactId>vxms-rest</artifactId>
+            <version>${vxms-verticle.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jacpfx</groupId>
+            <artifactId>vxms-verticle</artifactId>
+            <version>${vxms-verticle.version}</version>
+        </dependency>
+        <dependency>
             <groupId>io.vertx</groupId>
             <artifactId>vertx-mongo-client</artifactId>
             <version>${vertx.version}</version>
         </dependency>
-       <dependency>
-            <groupId>io.vertx</groupId>
-            <artifactId>vertx-service-discovery-bridge-kubernetes</artifactId>
-            <version>${vertx.version}</version>
-        </dependency>
-      <!--  <dependency>
-            <groupId>com.hazelcast</groupId>
-            <artifactId>hazelcast</artifactId>
-            <version>${hazelcast.version}</version>
-        </dependency>
+        <!--    <dependency>
+                 <groupId>io.vertx</groupId>
+                 <artifactId>vertx-service-discovery-bridge-kubernetes</artifactId>
+                 <version>${vertx.version}</version>
+             </dependency>
+               -->
         <dependency>
             <groupId>com.hazelcast</groupId>
             <artifactId>hazelcast-kubernetes</artifactId>
             <version>${hazelcast-kubernetes.version}</version>
-        </dependency>-->
+        </dependency>
+
         <!--Vertx provided dependencies-->
         <dependency>
             <groupId>io.vertx</groupId>
@@ -90,16 +97,7 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.jacpfx</groupId>
-            <artifactId>vxms-rest</artifactId>
-            <version>${vxms-verticle.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jacpfx</groupId>
-            <artifactId>vxms-verticle</artifactId>
-            <version>${vxms-verticle.version}</version>
-        </dependency>
+
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -134,7 +132,7 @@
                                         implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <manifestEntries>
                                         <Main-Class>io.vertx.core.Launcher</Main-Class>
-                                        <Main-Verticle>ch.trivadis.verticles.VerticleGateway</Main-Verticle>
+                                        <Main-Verticle>ch.trivadis.verticles.GatewayVxms</Main-Verticle>
                                     </manifestEntries>
                                 </transformer>
                                 <transformer

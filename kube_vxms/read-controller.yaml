@@ -2,22 +2,22 @@ apiVersion: v1
 kind: ReplicationController
 metadata:
   labels:
-    name: read-verticle
+    name: read-vxms
     visualize: "true"
-  name: read-verticle-controller
+  name: read-vxms-controller
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        name: read-verticle
+        name: read-vxms
         env: prod
-        app: vertx-cluster-01
+        app: vxms-cluster-01
         visualize: "true"
     spec:
       containers:
-      - image: gcr.io/kubernetestests-147607/read-verticle:vertx-demo
-        name: read-verticle
+      - image: gcr.io/kubernetestests-147607/read-verticle:vxms-demo
+        name: read-vxms
         ports:
         - name: hazelcast
           containerPort: 5701

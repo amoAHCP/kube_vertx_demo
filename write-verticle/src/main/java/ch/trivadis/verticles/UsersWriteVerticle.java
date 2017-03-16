@@ -9,7 +9,7 @@ import io.vertx.ext.mongo.MongoClient;
 /**
  * Created by Andy Moncsek on 17.02.16.
  */
-public class UsersWriteToMongo extends AbstractVerticle {
+public class UsersWriteVerticle extends AbstractVerticle {
     private MongoClient mongo;
 
 
@@ -17,11 +17,11 @@ public class UsersWriteToMongo extends AbstractVerticle {
     public void start(Future<Void> startFuture) throws Exception {
         mongo = InitMongoDB.initMongoData(vertx,config());
 
-        vertx.eventBus().consumer("/api/users-post", insertUser());
+        vertx.eventBus().consumer("/api.users.POST", insertUser());
 
-        vertx.eventBus().consumer("/api/users/:id-put", updateUser());
+        vertx.eventBus().consumer("/api.users.id.PUT", updateUser());
 
-        vertx.eventBus().consumer("/api/users/:id-delete", deleteUser());
+        vertx.eventBus().consumer("/api.users.id.DELETE", deleteUser());
     }
 
     private Handler<Message<JsonObject>> insertUser() {
@@ -133,7 +133,7 @@ public class UsersWriteToMongo extends AbstractVerticle {
         Vertx.clusteredVertx(vOpts, cluster -> {
             if (cluster.succeeded()) {
                 final Vertx result = cluster.result();
-                result.deployVerticle(UsersWriteToMongo.class.getName(), options, handle -> {
+                result.deployVerticle(UsersWriteVerticle.class.getName(), options, handle -> {
 
                 });
             }
